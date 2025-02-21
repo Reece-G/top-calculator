@@ -1,5 +1,14 @@
+@font-face {
+    font-family: Digital-7;
+    src: url(./digital-7.ttf);
+}
+
 html {
     height: 100%;
+
+    /* content */
+    font-family: Digital-7;
+    font-size: 4em;
 }
 
 body {
@@ -32,6 +41,11 @@ body {
 
     /* position */
     flex-grow: 1;
+
+    /* content */
+    padding-right: 5%;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .buttons {
@@ -58,6 +72,7 @@ body {
     height: 25%;
     width: 100%;
 
+    /* content */
     text-align: center;
     align-content: center;
 }
