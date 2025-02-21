@@ -18,4 +18,6 @@ function operate(x, y, operator) {
     return operator(x, y)
 }
 
-operate(5, 5, add)
+let num1
+let num2
+let oper
