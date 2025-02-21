@@ -67,7 +67,7 @@ body {
     justify-content: flex-start;
 }
 
-.button {
+.columns > div {
     /* size */
     height: 25%;
     width: 100%;

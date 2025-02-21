@@ -21,3 +21,15 @@ function operate(x, y, operator) {
 let num1
 let num2
 let oper
+
+let display_output = 0;
+
+const displayElement = document.querySelector(".display");
+
+const buttonArray = document.querySelectorAll('.number')
+buttonArray.forEach(button => {
+    button.addEventListener("click", event => {
+        num1 = button.id
+        displayElement.textContent += num1
+    })
+})
