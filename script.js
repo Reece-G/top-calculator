@@ -1,3 +1,6 @@
+// Calculator script
+
+// Calculator helper functions
 function add(x, y) {
     return x + y
 }
@@ -22,17 +25,27 @@ function updateDisplayValue(value, replace = false) {
     replace ? displayElement.textContent = value : displayElement.textContent += value
 }
 
+function clearDisplay() {
+    displayElement.textContent = RESET_DISPLAY;
+}
+
+// Calculator
 let num1
 let num2
 let oper
 
-let display_output = 0;
+const RESET_DISPLAY = 0;
 
-const displayElement = document.querySelector(".display");
+// Element retrieval
+const displayElement = document.querySelector(".display")
+const buttonArray = document.querySelectorAll(".number")
 
-const buttonArray = document.querySelectorAll('.number')
+// Event Listeners
 buttonArray.forEach(button => {
     button.addEventListener("click", e => {
-        updateDisplayValue(button.id, true)
+        updateDisplayValue(button.id)
     })
 })
+
+const clearButton = document.querySelector("#clear")
+clearButton.addEventListener("click", clearDisplay)
