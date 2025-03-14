@@ -18,6 +18,10 @@ function operate(x, y, operator) {
     return operator(x, y)
 }
 
+function updateDisplayValue(value, replace = false) {
+    replace ? displayElement.textContent = value : displayElement.textContent += value
+}
+
 let num1
 let num2
 let oper
@@ -28,8 +32,7 @@ const displayElement = document.querySelector(".display");
 
 const buttonArray = document.querySelectorAll('.number')
 buttonArray.forEach(button => {
-    button.addEventListener("click", event => {
-        num1 = button.id
-        displayElement.textContent += num1
+    button.addEventListener("click", e => {
+        updateDisplayValue(button.id, true)
     })
 })
