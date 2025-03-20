@@ -18,34 +18,56 @@ function divide(x, y) {
 }
 
 function operate(x, y, operator) {
-    return operator(x, y)
+    return operator(Number(x), Number(y))
 }
 
 function updateDisplayValue(value, replace = false) {
-    replace ? displayElement.textContent = value : displayElement.textContent += value
+    replace || newDisplay ? displayElement.textContent = value : displayElement.textContent += value
 }
 
 function clearDisplay() {
     displayElement.textContent = RESET_DISPLAY;
+    newDisplay = true
 }
 
 // Calculator
 let num1
 let num2
-let oper
+let operation
+let newDisplay = true
+const opperationsArray = [add, subtract, multiply, divide]
 
 const RESET_DISPLAY = 0;
 
 // Element retrieval
 const displayElement = document.querySelector(".display")
-const buttonArray = document.querySelectorAll(".number")
+const numberButtons = document.querySelectorAll(".number")
+const operateButtons = document.querySelectorAll(".operate")
+const equalButton = document.querySelector("#equals")
+const clearButton = document.querySelector("#clear")
 
 // Event Listeners
-buttonArray.forEach(button => {
+clearButton.addEventListener("click", clearDisplay)
+
+numberButtons.forEach(button => {
     button.addEventListener("click", e => {
         updateDisplayValue(button.id)
+        newDisplay = false 
     })
 })
 
-const clearButton = document.querySelector("#clear")
-clearButton.addEventListener("click", clearDisplay)
+operateButtons.forEach(button => {
+    button.addEventListener("click", e => {
+        num1 = displayElement.textContent
+
+        operation = opperationsArray.find((func) => func.name == button.id)
+        
+        clearDisplay()
+        console.log("Click!", num1, operation)
+    })
+})
+
+equalButton.addEventListener("click", e => {
+    result = operate(num1, displayElement.textContent, operation)
+    updateDisplayValue(result, true)
+})
