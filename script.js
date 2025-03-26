@@ -18,6 +18,7 @@ function divide(x, y) {
 }
 
 function operate(x, y, operator) {
+    console.log(x, y)
     return operator(Number(x), Number(y))
 }
 
@@ -25,9 +26,20 @@ function updateDisplayValue(value, replace = false) {
     replace || newDisplay ? displayElement.textContent = value : displayElement.textContent += value
 }
 
-function clearDisplay() {
+function checkForNumbers() {
+    return (num1 && num2)
+}
+
+function clearDisplay(all = false) {
     displayElement.textContent = RESET_DISPLAY;
     newDisplay = true
+}
+
+function resetCalculator() {
+    newDisplay = true
+    num1 = null
+    num2 = null
+    operation = null
 }
 
 // Calculator
@@ -53,6 +65,7 @@ numberButtons.forEach(button => {
     button.addEventListener("click", e => {
         updateDisplayValue(button.id)
         newDisplay = false 
+        console.log(checkForNumbers())
     })
 })
 
@@ -63,11 +76,14 @@ operateButtons.forEach(button => {
         operation = opperationsArray.find((func) => func.name == button.id)
         
         clearDisplay()
-        console.log("Click!", num1, operation)
+
     })
 })
 
 equalButton.addEventListener("click", e => {
     result = operate(num1, displayElement.textContent, operation)
     updateDisplayValue(result, true)
+
+    // reset calculator
+    resetCalculator()
 })
